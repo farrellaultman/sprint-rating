@@ -14,13 +14,26 @@
     let points = 0;
     $: {
         points = 0;
-        if (sloppy == 'No')         points += 1;
-        if (edc == 'Yes')           points += 1;
-        if (sprintGoal == 'Yes')    points += 1;
-        if (extraordinary == 'Yes') points += 1;
 
-        points += parseFloat(overallPersonalRating) / 5;
-        points += parseFloat(overallTeamRating) / 5;
+        // Positive Metrix
+        points += parseFloat(overallPersonalRating) / 5 * 0.45
+        points += parseFloat(overallTeamRating) / 5 * 0.45
+        if (sprintGoal == 'Yes') points += 1 * 0.10;
+
+        // Penalties
+        if (sloppy == 'Yes') points -= 1 * 0.20;
+        if (edc == 'No') points -= 1 * 0.20;
+
+        // Bonus
+        if (extraordinary == 'Yes') points += 1 * 0.20;
+
+        // Scale to 5
+        points *= 5;
+
+        // Min value for points is 1
+        if (points < 1) points = 1;
+
+        // One decimal place only
         points = points.toFixed(1);
     };
 
