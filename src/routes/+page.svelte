@@ -7,8 +7,8 @@
     let sloppy = 'Yes';
     let edc = 'No';
     let sprintGoal = 'No';
-    let overallPersonalRating = [1];
-    let overallTeamRating = [1];
+    let personalRating = [1];
+    let teamRating = [1];
     let extraordinary = 'No';
 
     let points = 0;
@@ -16,8 +16,8 @@
         points = 0;
 
         // Positive Metrix
-        points += parseFloat(overallPersonalRating) / 5 * 0.45
-        points += parseFloat(overallTeamRating) / 5 * 0.45
+        points += parseFloat(personalRating) / 5 * 0.45
+        points += parseFloat(teamRating) / 5 * 0.45
         if (sprintGoal == 'Yes') points += 1 * 0.10;
 
         // Penalties
@@ -50,10 +50,10 @@
 
 <div class="content">
     <h1>Sprint Rating</h1>
-    <p>Answer the following questions to calculate your overall rating for the sprint.</p>
+    <p>Answer the following questions to calculate your overall rating for this sprint.</p>
 
     <p>
-        <small>Were you sloppy or allow a TM to be sloppy during this sprint?</small>
+        <small>Were you sloppy or allow a team member to be sloppy during this sprint?</small>
         <label>
             <input type=radio bind:group={sloppy} name='sloppy' value={'Yes'}>
             Yes
@@ -65,7 +65,7 @@
     </p>
 
     <p>
-        <small>Did you make Every Day Count during the sprint?</small>
+        <small>Did you make "Every Day Count" during this sprint?</small>
         <label>
             <input type=radio bind:group={edc} name='edc' value={'Yes'}>
             Yes
@@ -77,7 +77,7 @@
     </p>
 
     <p>
-        <small>Did you complete a Sprint goal?</small>
+        <small>Did you complete a sprint goal?</small>
         <label>
             <input type=radio bind:group={sprintGoal} name='sprintGoal' value={'Yes'}>
             Yes
@@ -89,13 +89,13 @@
     </p>
 
     <p class="range-slider">
-        <small>On a scale of 1 to 5, what is your overall sprint rating for yourself?</small>
-        <RangeSlider bind:values={overallPersonalRating} min={1} max={5} all={'label'} springValues={{ stiffness: 0.4, damping: 1 }} pips />
+        <small>On a scale of 1 to 5, what is your <i>Personal</i> rating for this sprint?</small>
+        <RangeSlider bind:values={personalRating} min={1} max={5} all={'label'} springValues={{ stiffness: 0.4, damping: 1 }} pips />
     </p>
 
     <p class="range-slider">
-        <small>On a scale of 1 to 5, what is your overall sprint rating for team?</small>
-        <RangeSlider bind:values={overallTeamRating} min={1} max={5} all={'label'} springValues={{ stiffness: 0.4, damping: 1 }} pips />
+        <small>On a scale of 1 to 5, what is your <i>Team</i> rating for this sprint?</small>
+        <RangeSlider bind:values={teamRating} min={1} max={5} all={'label'} springValues={{ stiffness: 0.4, damping: 1 }} pips />
     </p>
 
     <p>
